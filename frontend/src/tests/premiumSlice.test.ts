@@ -8,7 +8,7 @@ import { PremiumCalculationResponse } from "../types/premiumTypes";
 describe("Premium Slice", () => {
   test("should handle premium calculation", () => {
     const initialState: PremiumState = { result: null, status: "idle" };
-    const mockPayload: PremiumCalculationResponse = {
+    const mockResponse: PremiumCalculationResponse = {
       planCode: "T11A20",
       baseSumAssured: 200000,
       baseAnnualPremium: 10000,
@@ -20,11 +20,11 @@ describe("Premium Slice", () => {
 
     const action = {
       type: calculatePremium.fulfilled.type,
-      payload: mockPayload,
+      payload: mockResponse,
     };
     const state = premiumReducer(initialState, action);
 
-    expect(state.result).toEqual(mockPayload);
+    expect(state.result).toEqual(mockResponse);
     expect(state.status).toBe("succeeded");
   });
 });
